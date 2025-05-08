@@ -106,8 +106,8 @@ TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols)
     : Matrix(2, nCols) {
 
   for (size_t i = 0; i < nCols; i++) {
-    m_values[i][0] = xShift;
-    m_values[i][1] = yShift;
+    m_values[0][i] = xShift;
+    m_values[1][i] = yShift;
   }
 }
 
