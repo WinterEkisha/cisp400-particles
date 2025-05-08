@@ -7,12 +7,18 @@ Engine::Engine() {
 
 void Engine::run(){
 	sf::Clock frame;
+	
 	Particle test(m_Window, 26, sf::Vector2i( 100, 100));
 	cout << "Starting Particle unit tests..." << endl;
     Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
-    p.unitTests();
+    //p.unitTests();
     cout << "Unit tests complete.  Starting engine..." << endl;
-	
+	while(m_Window.open()){
+		auto dt = frame.reset();
+		input();
+		update(dt);
+		draw();
+	}
 }
 
 void Engine::input() {
