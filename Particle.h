@@ -6,7 +6,7 @@
 
 #define _USE_MATH_DEFINES // for vs
 
-#define M_PI  3.14
+#define M_PI 3.14159265358979323846
 
 const float G = 1000;  // Gravity
 const float TTL = 5.0; // Time To Live
