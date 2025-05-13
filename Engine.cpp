@@ -1,7 +1,7 @@
 #include "Engine.h"
 
 Engine::Engine() {
-	m_Window.create(sf::VideoMode(1920, 1080), "fuck this shit");
+	m_Window.create(sf::VideoMode(1920, 1080), "Particles");
 
 }
 
