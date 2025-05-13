@@ -38,15 +38,15 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
 };
 
 void Particle::draw(RenderTarget &target, RenderStates states) const{
-	sf::VertexArray lines(sf::TriangleFan, m_numPoints + 1);                                              
-	sf::Vector2f center = target.mapPixelToCoords((sf::Vector2i) m_centerCoordinate, m_cartesianPlane);   
+	sf::VertexArray lines(sf::TriangleFan, m_numPoints + 1);
+	sf::Vector2f center = sf::Vector2f(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane));
 	//sf::Vector2f center = target.mapPixelToCoords(sf::Vector2i (1, 1), m_cartesianPlane);
 	lines[0].position = center;
-	lines[0].color = m_color2;
+	lines[0].color = m_color1;
 	for (int i = 1; i <= m_numPoints; i++){
-		sf::Vector2i worldPosition(m_A(0, i-1), m_A(1, i-1));
-		lines[i].position = target.mapPixelToCoords(worldPosition, m_cartesianPlane);
-		lines[0].color = m_color2;
+		sf::Vector2f worldPosition(m_A(0, i-1), m_A(1, i-1));
+		lines[i].position = static_cast<sf::Vector2f>(target.mapCoordsToPixel(worldPosition, m_cartesianPlane));
+		lines[i].color = m_color2;
 	}
 	target.draw(lines);
 }
@@ -58,7 +58,7 @@ void Particle::update(float dt) {
 	float dx = (m_vx * dt), dy;
 	m_vy -= G * dt;
 	dy = m_vy * dt;
-	translate(dx, dy);	
+	translate(dx, dy);
 }
 
 void Particle::rotate(double theta) {

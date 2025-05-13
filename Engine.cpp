@@ -2,12 +2,12 @@
 
 Engine::Engine() {
 	m_Window.create(sf::VideoMode(1920, 1080), "fuck this shit");
-	
+
 }
 
 void Engine::run(){
 	sf::Clock frame;
-	
+
 	Particle test(m_Window, 26, sf::Vector2i( 100, 100));
 	cout << "Starting Particle unit tests..." << endl;
     Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
@@ -22,7 +22,7 @@ void Engine::run(){
 }
 
 void Engine::input() {
-  while (m_Window.isOpen()) {
+
 
     Event event;
     while (m_Window.pollEvent(event)) {
@@ -31,16 +31,13 @@ void Engine::input() {
       }
       if (event.type == sf::Event::MouseButtonPressed) {
         if (event.mouseButton.button == sf::Mouse::Left) {
-          // make particle at
-          event.mouseButton.x;
-          event.mouseButton.y;
-			
-			for (int i = 0; i < 0; i++){
+
+			for (int i = 0; i < 5; i++){
 				//target, numPoints, click postion
-				m_particles.push_back(Particle(m_Window, 
+				m_particles.push_back(Particle(m_Window,
 				getRandInt(25, 50),
 				Vector2i (event.mouseButton.x, event.mouseButton.y)));
-				
+
 			}
         }
       }
@@ -48,11 +45,11 @@ void Engine::input() {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
       m_Window.close();
     }
-  }
+
 }
 
 void Engine::update(float dtAsSeconds){
-	auto iter = m_particles.begin(); //m_particles[0] 
+	auto iter = m_particles.begin(); //m_particles[0]
 	while(iter != m_particles.end()){
 		if(iter->getTTL() > 0.0){
 			iter->update(dtAsSeconds);
